@@ -1,6 +1,5 @@
 import json
 
-
 class Planner:
     def __init__(self, filePath):
         """
@@ -9,19 +8,9 @@ class Planner:
         if filePath exists creates an object
         else raise a NameError
 
-        >>> a=Planner("data.json")
+        >>> a=Planner("test_data.json")
         
         >>> a=Planner("dataagrbg.json")
-        Traceback (most recent call last):
-            File "/usr/lib/python2.7/doctest.py", line 1315, in __run
-                compileflags, 1) in test.globs
-            File "<doctest __main__.Planner.__init__[1]>", line 1, in <module>
-                a=Planner("dataagrbg.json")
-            File "planner.py", line 20, in __init__
-                self.data = dict(self.__load())
-            File "planner.py", line 26, in __load
-                except FileNotFoundError:
-        NameError: global name 'FileNotFoundError' is not defined
 
         """
         self.filePath = filePath
@@ -44,9 +33,9 @@ class Planner:
         """
         Prints a dictionary of events
 
-        >>> a=Planner("data.json")
+        >>> a=Planner("test_data.json")
         >>> a.printData()
-        {'2012-04-23T18:25:47.511Z': '1', '2017-04-23T18:25:43.511Z': '2', '2012-04-23T18:25:43.511Z': '3'}
+        {'2017-04-23T18:25:43.511Z': '2', '2012-04-23T18:25:43.511Z': '3', '2011-04-23T18:25:43.511Z': 'blablabla'}
 
         """
         print(self.data)
@@ -56,7 +45,7 @@ class Planner:
         Returns string if date exists
         else returns nothing
 
-        >>> a=Planner("data.json")
+        >>> a=Planner("test_data.json")
         >>> a.get("2012-04-23T18:25:43.511Z")
         '3'
         
@@ -70,7 +59,7 @@ class Planner:
         Returns True if date and note were added successfully
         else returns False
 
-        >>> a=Planner("data.json")
+        >>> a=Planner("test_data.json")
         >>> a.add("2011-04-23T18:25:43.511Z","blablabla")
         True
         
@@ -90,7 +79,7 @@ class Planner:
         Returns True if date and note were updated successfully
         else returns False
 
-        >>> a=Planner("data.json")
+        >>> a=Planner("test_data.json")
         >>> a.update("2012-04-23T18:25:43.511Z","bla")
         True
         
@@ -110,7 +99,7 @@ class Planner:
         Returns True if date exists and event was deleted successfully
         else returns False
 
-        >>> a=Planner("data.json")
+        >>> a=Planner("test_data.json")
         >>> a.delete("2012-04-23T18:25:47.511Z")
         True
         
@@ -127,5 +116,7 @@ class Planner:
 
 
 
-import doctest
-doctest.testmod()
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
