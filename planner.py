@@ -46,3 +46,7 @@ class Planner:
             return True
         except KeyError:
             return False
+    
+    def getAll(self):
+        return self.data
+
