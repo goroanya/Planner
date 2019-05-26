@@ -1,2 +1,2 @@
 # Planner
-Python lab1 with TEAMWORK
+Python lab1 . Teamwork.
