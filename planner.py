@@ -1,16 +1,17 @@
 import json
 
+
 class Planner:
     def __init__(self, filePath):
         """
         Constructor of class
         Takes a filePath to file with data
         if filePath exists creates an object
-        else raise a NameError
+        else returns nothing
+
+        >>> a=Planner("dataagrbg.json")
 
         >>> a=Planner("test_data.json")
-        
-        >>> a=Planner("dataagrbg.json")
 
         """
         self.filePath = filePath
@@ -26,8 +27,6 @@ class Planner:
     def __save(self):
         with open(self.filePath, 'w') as json_file:
             json_file.write(json.dumps(self.data))
-
-    
 
     def printData(self):
         """
@@ -48,11 +47,22 @@ class Planner:
         >>> a=Planner("test_data.json")
         >>> a.get("2012-04-23T18:25:43.511Z")
         '3'
-        
-        >>> a.get("2012-04-23T18:25:43.5Z") 
+
+        >>> a.get("2012-04-23T18:25:43.5Z")
 
         """
         return self.data.get(date)
+
+    def getAll(self):
+        """
+        Returns a dictionary of events
+
+        >>> a = Planner("test_data.json")
+        >>> print(a.getAll())
+        {'2017-04-23T18:25:43.511Z': '2', '2012-04-23T18:25:43.511Z': '3', '2011-04-23T18:25:43.511Z': 'blablabla'}
+
+        """
+        return self.data
 
     def add(self, date, note):
         """
@@ -62,8 +72,8 @@ class Planner:
         >>> a=Planner("test_data.json")
         >>> a.add("2011-04-23T18:25:43.511Z","blablabla")
         True
-        
-        >>> a.add("2011-04-23T18:25:43.511Z","blablabla") 
+
+        >>> a.add("2011-04-23T18:25:43.511Z","blablabla")
         False
 
         """
@@ -82,8 +92,8 @@ class Planner:
         >>> a=Planner("test_data.json")
         >>> a.update("2012-04-23T18:25:43.511Z","bla")
         True
-        
-        >>> a.update("2010-04-23T18:25:43.511Z","blablabla") 
+
+        >>> a.update("2010-04-23T18:25:43.511Z","blablabla")
         False
 
         """
@@ -102,8 +112,8 @@ class Planner:
         >>> a=Planner("test_data.json")
         >>> a.delete("2012-04-23T18:25:47.511Z")
         True
-        
-        >>> a.delete("2010-04-23T18:25:43.511Z") 
+
+        >>> a.delete("2010-04-23T18:25:43.511Z")
         False
 
         """
@@ -115,8 +125,6 @@ class Planner:
             return False
 
 
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-

@@ -66,7 +66,7 @@ def get_note(date):
 @app.route('/planner/api/v1.0/notes', methods=['POST'])
 @auth.login_required
 def create_note():
-    if not request.json or not 'note' in request.json or not 'date' in request.json:
+    if not request.json or 'note' not in request.json or 'date' not in request.json:
         abort(400)
 
     date = request.json['date']
@@ -81,7 +81,8 @@ def create_note():
 @app.route('/planner/api/v1.0/notes/<string:date>', methods=['PUT'])
 @auth.login_required
 def update_note(date):
-    if not request.json or not 'note' in request.json or type(request.json['note']) != str:
+    print(request.json)
+    if not request.json or 'note' not in request.json or type(request.json['note']) != str:
         abort(400)
 
     if planner.update(date, request.json['note']) is True:
@@ -110,6 +111,5 @@ POSSIBLE URL:
         http://127.0.0.1:5000/planner/api/v1.0/
         http://127.0.0.1:5000/planner/api/v1.0/notes
         http://127.0.0.1:5000/planner/api/v1.0/notes/<string:date>
-POSSIBLE DATA : '{"note":"something, "date":"something"}', '{"note":"something"}'   
-
+POSSIBLE DATA : '{"note":"something, "date":"something"}', '{"note":"something"}'
 """
